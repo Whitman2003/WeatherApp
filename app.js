@@ -42,65 +42,55 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
             throw new Error("No data returned from the API");
         }
 
-        //Attributes for timezone and location
         console.log("Response: ", objWeatherResonse);
-        const strUTCOffsetSeconds = objWeatherResonse.utcOffsetSeconds();
-        const strTimezone = objWeatherResonse.timezone();
-        const strTimezoneAbbr = objWeatherResonse.timezoneAbbreviation();
-        const strLatitude = objWeatherResonse.latitude();
-        const strLongitude = objWeatherResonse.longitude();
+        
+        //Set the data
+        const strLatitude = objWeatherResonses.latitude;
+        const strLongitude = objWeatherResonses.longitude;
+        const strGenerationTime = objWeatherResonses.generationtime_ms;
+        const strUTCOffsetSeconds = objWeatherResonses.utc_offset_seconds;
+        const strTimezone = objWeatherResonses.timezone;
+        const strTimezoneAbbr = objWeatherResonses.timezone_abbreviation;
+        const strEleveation = objWeatherResonses.elevation;
 
-        const hourly = objWeatherResonse.hourly();
+        //Set the hourly units
+        const strTime = objWeatherResonses.hourly_units.time;
+        const strTemperature = objWeatherResonses.hourly_units.temperature_2m;
+        const strRelativeHumidity = objWeatherResonses.hourly_units.relative_humidity_2m;
+        const strApparentTemperature = objWeatherResonses.hourly_units.apparent_temperature;
+        const strPrecipitationProbability = objWeatherResonses.hourly_units.precipitation_probability;
+        const strPrecipitation = objWeatherResonses.hourly_units.precipitation;
+        const strRain = objWeatherResonses.hourly_units.rain;
+        const strShowers = objWeatherResonses.hourly_units.showers;
+        const strSnowfall = objWeatherResonses.hourly_units.snowfall;
+        const strSnowDepth = objWeatherResonses.hourly_units.snow_depth;
+        const strCloudCover = objWeatherResonses.hourly_units.cloud_cover;
+        const strVisibility = objWeatherResonses.hourly_units.visibility;
+        const strWindSpeed = objWeatherResonses.hourly_units.wind_speed_10m;
+        const strWindDirection = objWeatherResonses.hourly_units.wind_direction_10m;
+        const strWindGusts = objWeatherResonses.hourly_units.wind_gusts_10m;
+        const strSoilTemperature = objWeatherResonses.hourly_units.soil_temperature_0cm;
+        const strSoilMoisture = objWeatherResonses.hourly_units.soil_moisture_0_to_1cm;
 
-        //Forms time ranges
-        const range = (start, stop, step) =>
-            Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
-
-        const objWeatherData = {
-            hourly: {
-                time: range(Number(hourly.time()), Number(hourly.timeEnd()), hourly.interval()).map(
-                    (t) => new Date((t + strUTCOffsetSeconds) * 1000)
-                ),
-                temperature2m: hourly.variables(0).valuesArray(),
-                relativeHumidity2m: hourly.variables(1).valuesArray(),
-                apparentTemperature: hourly.variables(2).valuesArray(),
-                precipitationProbability: hourly.variables(3).valuesArray(),
-                precipitation: hourly.variables(4).valuesArray(),
-                rain: hourly.variables(5).valuesArray(),
-                showers: hourly.variables(6).valuesArray(),
-                snowfall: hourly.variables(7).valuesArray(),
-                snowDepth: hourly.variables(8).valuesArray(),
-                cloudCover: hourly.variables(9).valuesArray(),
-                visibility: hourly.variables(10).valuesArray(),
-                windSpeed10m: hourly.variables(11).valuesArray(),
-                windDirection10m: hourly.variables(12).valuesArray(),
-                windGusts10m: hourly.variables(13).valuesArray(),
-                soilTemperature0cm: hourly.variables(14).valuesArray(),
-                soilMoisture0to1cm: hourly.variables(15).valuesArray()
-            },
-        };
-
-        for(let i = 0; i < objWeatherData.hourly.time.length; i++) {
-            console.log(
-                objWeatherData.hourly.time[i].toISOString(),
-                objWeatherData.hourly.temperature2m[i],
-                objWeatherData.hourly.relativeHumidity2m[i],
-                objWeatherData.hourly.apparentTemperature[i],
-                objWeatherData.hourly.precipitationProbability[i],
-                objWeatherData.hourly.precipitation[i],
-                objWeatherData.hourly.rain[i],
-                objWeatherData.hourly.showers[i],
-                objWeatherData.hourly.snowfall[i],
-                objWeatherData.hourly.snowDepth[i],
-                objWeatherData.hourly.cloudCover[i],
-                objWeatherData.hourly.visibility[i],
-                objWeatherData.hourly.windSpeed10m[i],
-                objWeatherData.hourly.windDirection10m[i],
-                objWeatherData.hourly.windGusts10m[i],
-                objWeatherData.hourly.soilTemperature0cm[i],
-                objWeatherData.hourly.soilMoisture0to1cm[i]
-            );
-        }
+        //Set the hourly data
+        const arrTime = objWeatherResonses.hourly.time;
+        const arrTemperature = objWeatherResonses.hourly.temperature_2m;
+        const arrRelativeHumidity = objWeatherResonses.hourly.relative_humidity_2m;
+        const arrApparentTemperature = objWeatherResonses.hourly.apparent_temperature;
+        const arrPrecipitationProbability = objWeatherResonses.hourly.precipitation_probability;
+        const arrPrecipitation = objWeatherResonses.hourly.precipitation;
+        const arrRain = objWeatherResonses.hourly.rain;
+        const arrShowers = objWeatherResonses.hourly.showers;
+        const arrSnowfall = objWeatherResonses.hourly.snowfall;
+        const arrSnowDepth = objWeatherResonses.hourly.snow_depth;
+        const arrCloudCover = objWeatherResonses.hourly.cloud_cover;
+        const arrVisibility = objWeatherResonses.hourly.visibility;
+        const arrWindSpeed = objWeatherResonses.hourly.wind_speed_10m;
+        const arrWindDirection = objWeatherResonses.hourly.wind_direction_10m;
+        const arrWindGusts = objWeatherResonses.hourly.wind_gusts_10m;
+        const arrSoilTemperature = objWeatherResonses.hourly.soil_temperature_0cm;
+        const arrSoilMoisture = objWeatherResonses.hourly.soil_moisture_0_to_1cm;
+        
     } catch (error) {
         console.error("Error getting weather information: ", error);
     }
