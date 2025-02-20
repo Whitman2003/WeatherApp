@@ -31,32 +31,34 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         return;
     }
 
+    const weatherParams = {
+        "latitude": Number(strLat),
+        "longitude": Number(strLong),
+        "hourly": [
+            "temperature_2m",
+            "relative_humidity_2m",
+            "apparent_temperature",
+            "precipitation_probability",
+            "precipitation",
+            "rain",
+            "showers",
+            "snowfall",
+            "snow_depth",
+            "cloud_cover",
+            "visibility",
+            "wind_speed_10m",
+            "wind_direction_10m",
+            "wind_gusts_10m",
+            "soil_temperature_0cm",
+            "soil_moisture_0_to_1cm"
+        ]
+    };
+
     //Gets the data
     try {
-        //const weatherURL = "https://api.open-meteo.com/v1/forecast";
-        const objWeatherResonse = await fetchWeatherApi({
-            "latitude": Number(strLat),
-            "longitude": Number(strLong),
-            "hourly": [
-                "temperature_2m",
-                "relative_humidity_2m",
-                "apparent_temperature",
-                "precipitation_probability",
-                "precipitation",
-                "rain",
-                "showers",
-                "snowfall",
-                "snow_depth",
-                "cloud_cover",
-                "visibility",
-                "wind_speed_10m",
-                "wind_direction_10m",
-                "wind_gusts_10m",
-                "soil_temperature_0cm",
-                "soil_moisture_0_to_1cm"
-            ],
-            "format": "json"
-        });
+        const weatherURL = "https://api.open-meteo.com/v1/forecast";
+        const objWeatherResonses = await fetchWeatherApi(weatherURL, weatherParams);
+        const objWeatherResonse = objWeatherResonses[0];
 
         console.log("API Response: ", objWeatherResonse);
 
@@ -64,39 +66,40 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
             throw new Error("No data returned from the API");
         }
 
-        //Get the first location
-        const objFirstLocation = objWeatherResonse[0];
-
         //Attributes for timezone and location
-        const strUTCOffsetSeconds = objWeatherResonse.utc_offset_seconds;
-        const strTimezone = objWeatherResonse.timezone;
-        const strTimezoneAbbr = objWeatherResonse.timezone_abbreviation;
-        const strLatitude = objWeatherResonse.latitude;
-        const strLongitude = objWeatherResonse.longitude;
+        const strUTCOffsetSeconds = objWeatherResonse.utcOffsetSeconds();
+        const strTimezone = objWeatherResonse.timezone();
+        const strTimezoneAbbr = objWeatherResonse.timezoneAbbreviation();
+        const strLatitude = objWeatherResonse.latitude();
+        const strLongitude = objWeatherResonse.longitude();
 
-        const hourly = objWeatherResonse.hourly;
+        const hourly = objWeatherResonse.hourly();
+
+        //Forms time ranges
+        const range = (start, stop, step) =>
+            Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
 
         const objWeatherData = {
             hourly: {
-                time: Range(Number(hourly.time()), Number(hourly.timeEnd()), hourly.interval()).map(
+                time: range(Number(hourly.time()), Number(hourly.timeEnd()), hourly.interval()).map(
                     (t) => new Date((t + strUTCOffsetSeconds) * 1000)
                 ),
-                temperature2m: hourly.variables[0].values,
-                relativeHumidity2m: hourly.variables[1].values,
-                apparentTemperature: hourly.variables[2].values,
-                precipitationProbability: hourly.variables[3].values,
-                precipitation: hourly.variables[4].values,
-                rain: hourly.variables[5].values,
-                showers: hourly.variables[6].values,
-                snowfall: hourly.variables[7].values,
-                snowDepth: hourly.variables[8].values,
-                cloudCover: hourly.variables[9].values,
-                visibility: hourly.variables[10].values,
-                windSpeed10m: hourly.variables[11].values,
-                windDirection10m: hourly.variables[12].values,
-                windGusts10m: hourly.variables[13].values,
-                soilTemperature0cm: hourly.variables[14].values,
-                soilMoisture0to1cm: hourly.variables[15].values
+                temperature2m: hourly.variables(0).valuesArray(),
+                relativeHumidity2m: hourly.variables(1).valuesArray(),
+                apparentTemperature: hourly.variables(2).valuesArray(),
+                precipitationProbability: hourly.variables(3).valuesArray(),
+                precipitation: hourly.variables(4).valuesArray(),
+                rain: hourly.variables(5).valuesArray(),
+                showers: hourly.variables(6).valuesArray(),
+                snowfall: hourly.variables(7).valuesArray(),
+                snowDepth: hourly.variables(8).valuesArray(),
+                cloudCover: hourly.variables(9).valuesArray(),
+                visibility: hourly.variables(10).valuesArray(),
+                windSpeed10m: hourly.variables(11).valuesArray(),
+                windDirection10m: hourly.variables(12).valuesArray(),
+                windGusts10m: hourly.variables(13).valuesArray(),
+                soilTemperature0cm: hourly.variables(14).valuesArray(),
+                soilMoisture0to1cm: hourly.variables(15).valuesArray()
             },
         };
 
