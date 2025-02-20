@@ -100,13 +100,13 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         let hourlyPrecipitationDataHTML = '';
         for (let i = 0; i < arrTime.length; i++) {
             hourlyPrecipitationDataHTML += `
-                <p>Time: ${arrTime[i]}
-                Precipitation Probability: ${arrPrecipitationProbability[i]}
-                Precipitation: ${arrPrecipitation[i]}
-                Rain: ${arrRain[i]}
-                Showers: ${arrShowers[i]}
-                Snowfall: ${arrSnowfall[i]}
-                Snow Depth: ${arrSnowDepth[i]}</p>`;
+                <p>Time: ${arrTime[i]} ${strTime}
+                Precipitation Probability: ${arrPrecipitationProbability[i]} ${strPrecipitationProbability}
+                Precipitation: ${arrPrecipitation[i]} ${strPrecipitation}
+                Rain: ${arrRain[i]} ${strRain}
+                Showers: ${arrShowers[i]}  ${strShowers}
+                Snowfall: ${arrSnowfall[i]} ${strSnowfall}
+                Snow Depth: ${arrSnowDepth[i]} ${strSnowDepth}</p>`;
         }
         document.querySelector('#hourlyPrecipitationData').innerHTML = hourlyPrecipitationDataHTML;
 
