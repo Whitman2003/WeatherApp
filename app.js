@@ -53,64 +53,68 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
     };
 
     //Gets the data
-    const weatherURL = "https://api.open-meteo.com/v1/forecast";
-    const objWeatherResonse = await fetchWeatherApi(weatherURL, objLocation);
+    try {
+        const weatherURL = "https://api.open-meteo.com/v1/forecast";
+        const objWeatherResonse = await fetchWeatherApi(weatherURL, objLocation);
 
-    //Get the first location
-    const objFirstLocation = objWeatherResonse[0];
+        //Get the first location
+        const objFirstLocation = objWeatherResonse[0];
 
-    //Attributes for timezone and location
-    const strUTCOffsetSeconds = Response.utcOffsetSeconds();
-    const strTimezone = Response.timezone();
-    const strTimezoneAbbr = Response.timezoneAbbreviation();
-    const strLatitude = Response.latitude();
-    const strLongitude = Response.longitude();
+        //Attributes for timezone and location
+        const strUTCOffsetSeconds = Response.utcOffsetSeconds();
+        const strTimezone = Response.timezone();
+        const strTimezoneAbbr = Response.timezoneAbbreviation();
+        const strLatitude = Response.latitude();
+        const strLongitude = Response.longitude();
 
-    const hourly = Response.hourly();
+        const hourly = Response.hourly();
 
-    const objWeatherData = {
-        hourly: {
-            time: Range(Number(hourly.time()), Number(hourly.timeEnd()), hourly.interval()).map(
-                (t) => new Date((t + strUTCOffsetSeconds) * 1000)
-            ),
-            temperature2m: hourly.variables(0).valuesArray(),
-            relativeHumidity2m: hourly.variables(1).valuesArray(),
-            apparentTemperature: hourly.variables(2).valuesArray(),
-            precipitationProbability: hourly.variables(3).valuesArray(),
-            precipitation: hourly.variables(4).valuesArray(),
-            rain: hourly.variables(5).valuesArray(),
-            showers: hourly.variables(6).valuesArray(),
-            snowfall: hourly.variables(7).valuesArray(),
-            snowDepth: hourly.variables(8).valuesArray(),
-            cloudCover: hourly.variables(9).valuesArray(),
-            visibility: hourly.variables(10).valuesArray(),
-            windSpeed10m: hourly.variables(11).valuesArray(),
-            windDirection10m: hourly.variables(12).valuesArray(),
-            windGusts10m: hourly.variables(13).valuesArray(),
-            soilTemperature0cm: hourly.variables(14).valuesArray(),
-            soilMoisture0to1cm: hourly.variables(15).valuesArray()
-        },
-    };
+        const objWeatherData = {
+            hourly: {
+                time: Range(Number(hourly.time()), Number(hourly.timeEnd()), hourly.interval()).map(
+                    (t) => new Date((t + strUTCOffsetSeconds) * 1000)
+                ),
+                temperature2m: hourly.variables(0).valuesArray(),
+                relativeHumidity2m: hourly.variables(1).valuesArray(),
+                apparentTemperature: hourly.variables(2).valuesArray(),
+                precipitationProbability: hourly.variables(3).valuesArray(),
+                precipitation: hourly.variables(4).valuesArray(),
+                rain: hourly.variables(5).valuesArray(),
+                showers: hourly.variables(6).valuesArray(),
+                snowfall: hourly.variables(7).valuesArray(),
+                snowDepth: hourly.variables(8).valuesArray(),
+                cloudCover: hourly.variables(9).valuesArray(),
+                visibility: hourly.variables(10).valuesArray(),
+                windSpeed10m: hourly.variables(11).valuesArray(),
+                windDirection10m: hourly.variables(12).valuesArray(),
+                windGusts10m: hourly.variables(13).valuesArray(),
+                soilTemperature0cm: hourly.variables(14).valuesArray(),
+                soilMoisture0to1cm: hourly.variables(15).valuesArray()
+            },
+        };
 
-    for(let i = 0; i < objWeatherData.hourly.time.length; i++) {
-        console.log(
-            objWeatherData.hourly.time[i].toISOString(),
-            objWeatherData.hourly.temperature2m[i],
-            objWeatherData.hourly.relativeHumidity2m[i],
-            objWeatherData.hourly.apparentTemperature[i],
-            objWeatherData.hourly.precipitationProbability[i],
-            objWeatherData.hourly.precipitation[i],
-            objWeatherData.hourly.rain[i],
-            objWeatherData.hourly.showers[i],
-            objWeatherData.hourly.snowfall[i],
-            objWeatherData.hourly.snowDepth[i],
-            objWeatherData.hourly.cloudCover[i],
-            objWeatherData.hourly.visibility[i],
-            objWeatherData.hourly.windSpeed10m[i],
-            objWeatherData.hourly.windDirection10m[i],
-            objWeatherData.hourly.windGusts10m[i],
-            objWeatherData.hourly.soilTemperature0cm[i],
-            objWeatherData.hourly.soilMoisture0to1cm[i]
-        );
+        for(let i = 0; i < objWeatherData.hourly.time.length; i++) {
+            console.log(
+                objWeatherData.hourly.time[i].toISOString(),
+                objWeatherData.hourly.temperature2m[i],
+                objWeatherData.hourly.relativeHumidity2m[i],
+                objWeatherData.hourly.apparentTemperature[i],
+                objWeatherData.hourly.precipitationProbability[i],
+                objWeatherData.hourly.precipitation[i],
+                objWeatherData.hourly.rain[i],
+                objWeatherData.hourly.showers[i],
+                objWeatherData.hourly.snowfall[i],
+                objWeatherData.hourly.snowDepth[i],
+                objWeatherData.hourly.cloudCover[i],
+                objWeatherData.hourly.visibility[i],
+                objWeatherData.hourly.windSpeed10m[i],
+                objWeatherData.hourly.windDirection10m[i],
+                objWeatherData.hourly.windGusts10m[i],
+                objWeatherData.hourly.soilTemperature0cm[i],
+                objWeatherData.hourly.soilMoisture0to1cm[i]
+            );
+        }
+    } catch (error) {
+        console.error("Error getting weather information: ", error);
     }
 })
