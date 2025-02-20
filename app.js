@@ -119,7 +119,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const arrWindGusts = objWeatherResonses.hourly.wind_gusts_10m;
 
         //Make into HTML
-        let hourlyWindDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
+        let hourlyWindDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Wind Speed</th><th>Wind Direction</th><th>Wind Gusts</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             hourlyWindDataHTML += `
                 <tr>
@@ -138,7 +138,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const arrApparentTemperature = objWeatherResonses.hourly.apparent_temperature;
 
         //Make into HTML
-        let hourlyTemperatureDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
+        let hourlyTemperatureDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Temperature</th><th>Relative Humidity</th><th>Apparent Temperature</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             hourlyTemperatureDataHTML += `
                 <tr>
@@ -156,7 +156,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const arrVisibility = objWeatherResonses.hourly.visibility;
 
         //Make into HTML
-        let hourlyVisibilityDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
+        let hourlyVisibilityDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Cloud Coverage</th><th>Visibility</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             hourlyVisibilityDataHTML += `
                 <tr>
@@ -173,7 +173,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const arrSoilMoisture = objWeatherResonses.hourly.soil_moisture_0_to_1cm;
 
         //Make into HTML
-        let hourlySoilDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
+        let hourlySoilDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Soil Temperature</th><th>Soil Moisture</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             hourlySoilDataHTML += `
                 <tr>
