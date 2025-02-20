@@ -118,18 +118,72 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const arrWindDirection = objWeatherResonses.hourly.wind_direction_10m;
         const arrWindGusts = objWeatherResonses.hourly.wind_gusts_10m;
 
+        //Make into HTML
+        let hourlyWindDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
+        for (let i = 0; i < arrTime.length; i++) {
+            hourlyWindDataHTML += `
+                <tr>
+                    <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrWindSpeed[i]} ${strWindSpeed}</td>
+                    <td>${arrWindDirection[i]} ${strWindDirection}</td>
+                    <td>${arrWindGusts[i]} ${strWindGusts}</td>
+                </tr>`;
+        }
+        hourlyWindDataHTML += '</tbody></table>';
+        document.querySelector('#hourlyWindData').innerHTML = hourlyWindDataHTML;
+
         //Temperature
         const arrTemperature = objWeatherResonses.hourly.temperature_2m;
         const arrRelativeHumidity = objWeatherResonses.hourly.relative_humidity_2m;
         const arrApparentTemperature = objWeatherResonses.hourly.apparent_temperature;
+
+        //Make into HTML
+        let hourlyTemperatureDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
+        for (let i = 0; i < arrTime.length; i++) {
+            hourlyTemperatureDataHTML += `
+                <tr>
+                    <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrTemperature[i]} ${strTemperature}</td>
+                    <td>${arrRelativeHumidity[i]} ${strRelativeHumidity}</td>
+                    <td>${arrApparentTemperature[i]} ${strApparentTemperature}</td>
+                </tr>`;
+        }
+        hourlyTemperatureDataHTML += '</tbody></table>';
+        document.querySelector('#hourlyTemperatureData').innerHTML = hourlyTemperatureDataHTML;
         
         //Visibility
         const arrCloudCover = objWeatherResonses.hourly.cloud_cover;
         const arrVisibility = objWeatherResonses.hourly.visibility;
+
+        //Make into HTML
+        let hourlyVisibilityDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
+        for (let i = 0; i < arrTime.length; i++) {
+            hourlyVisibilityDataHTML += `
+                <tr>
+                    <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrCloudCover[i]} ${strCloudCover}</td>
+                    <td>${arrVisibility[i]} ${strVisibility}</td>
+                </tr>`;
+        }
+        hourlyVisibilityDataHTML += '</tbody></table>';
+        document.querySelector('#hourlyVisibilityData').innerHTML = hourlyVisibilityDataHTML;
         
         //Soil
         const arrSoilTemperature = objWeatherResonses.hourly.soil_temperature_0cm;
         const arrSoilMoisture = objWeatherResonses.hourly.soil_moisture_0_to_1cm;
+
+        //Make into HTML
+        let hourlySoilDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
+        for (let i = 0; i < arrTime.length; i++) {
+            hourlySoilDataHTML += `
+                <tr>
+                    <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrSoilTemperature[i]} ${strSoilTemperature}</td>
+                    <td>${arrSoilMoisture[i]} ${strSoilMoisture}</td>
+                </tr>`;
+        }
+        hourlySoilDataHTML += '</tbody></table>';
+        document.querySelector('#hourlySoilData').innerHTML = hourlySoilDataHTML;
         
     } catch (error) {
         console.error("Error getting weather information: ", error);
