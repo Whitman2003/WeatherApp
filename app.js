@@ -53,6 +53,18 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const strTimezoneAbbr = objWeatherResonses.timezone_abbreviation;
         const strEleveation = objWeatherResonses.elevation;
 
+        //Make into HTML
+        const confirmWeatherDataHTML = `
+        <p>Latitude: ${strLatitude}</p>
+        <p>Longitude: ${strLongitude}</p>
+        <p>Generation Time: ${strGenerationTime}</p>
+        <p>UTC Offset Seconds: ${strUTCOffsetSeconds}</p>
+        <p>Timezone: ${strTimezone}</p>
+        <p>Timezone Abbreviation: ${strTimezoneAbbr}</p>
+        <p>Elevation: ${strEleveation}</p>`;
+
+        document.querySelector('#confirmWeatherData').innerHTML = confirmWeatherDataHTML;
+
         //Set the hourly units
         const strTime = objWeatherResonses.hourly_units.time;
         const strTemperature = objWeatherResonses.hourly_units.temperature_2m;
