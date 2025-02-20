@@ -31,9 +31,9 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         return;
     }
 
-    const weatherParams = {
-        "latitude": Number(strLat),
-        "longitude": Number(strLong),
+    const weatherParams = new URLSearchParams({
+        "latitude": strLat,
+        "longitude": strLong,
         "hourly": [
             "temperature_2m",
             "relative_humidity_2m",
@@ -51,14 +51,16 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
             "wind_gusts_10m",
             "soil_temperature_0cm",
             "soil_moisture_0_to_1cm"
-        ]
-    };
+        ].join(",")
+    });
 
     //Gets the data
     try {
         const weatherURL = "https://api.open-meteo.com/v1/forecast";
+        const weatherURLParames = `${weatherURL}?${weatherParams.toString()}`;
         console.log("API URL: ", weatherURL);
-        const objWeatherResonses = await fetchWeatherApi(weatherURL, weatherParams);
+
+        const objWeatherResonses = await fetchWeatherApi(weatherURLParames);
         const objWeatherResonse = objWeatherResonses[0];
 
         console.log("API Response: ", objWeatherResonse);
