@@ -85,21 +85,32 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const strSoilMoisture = objWeatherResonses.hourly_units.soil_moisture_0_to_1cm;
 
         //Set the hourly data
+        //Time for all
         const arrTime = objWeatherResonses.hourly.time;
-        const arrTemperature = objWeatherResonses.hourly.temperature_2m;
-        const arrRelativeHumidity = objWeatherResonses.hourly.relative_humidity_2m;
-        const arrApparentTemperature = objWeatherResonses.hourly.apparent_temperature;
+
+        //Precipitation
         const arrPrecipitationProbability = objWeatherResonses.hourly.precipitation_probability;
         const arrPrecipitation = objWeatherResonses.hourly.precipitation;
         const arrRain = objWeatherResonses.hourly.rain;
         const arrShowers = objWeatherResonses.hourly.showers;
         const arrSnowfall = objWeatherResonses.hourly.snowfall;
         const arrSnowDepth = objWeatherResonses.hourly.snow_depth;
-        const arrCloudCover = objWeatherResonses.hourly.cloud_cover;
-        const arrVisibility = objWeatherResonses.hourly.visibility;
+
+        //Wind
         const arrWindSpeed = objWeatherResonses.hourly.wind_speed_10m;
         const arrWindDirection = objWeatherResonses.hourly.wind_direction_10m;
         const arrWindGusts = objWeatherResonses.hourly.wind_gusts_10m;
+
+        //Temperature
+        const arrTemperature = objWeatherResonses.hourly.temperature_2m;
+        const arrRelativeHumidity = objWeatherResonses.hourly.relative_humidity_2m;
+        const arrApparentTemperature = objWeatherResonses.hourly.apparent_temperature;
+        
+        //Visibility
+        const arrCloudCover = objWeatherResonses.hourly.cloud_cover;
+        const arrVisibility = objWeatherResonses.hourly.visibility;
+        
+        //Soil
         const arrSoilTemperature = objWeatherResonses.hourly.soil_temperature_0cm;
         const arrSoilMoisture = objWeatherResonses.hourly.soil_moisture_0_to_1cm;
         
