@@ -101,7 +101,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         for (let i = 0; i < arrTime.length; i++) {
             hourlyPrecipitationDataHTML += `
                 <tr>
-                    <td>${arrTime[i]} ${strTime}</td>
+                    <td>${arrTime[i]} ${strTime}&nbsp</td>
                     <td>${arrPrecipitationProbability[i]} ${strPrecipitationProbability}</td>
                     <td>${arrPrecipitation[i]} ${strPrecipitation}</td>
                     <td>${arrRain[i]} ${strRain}</td>
