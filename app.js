@@ -96,6 +96,20 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const arrSnowfall = objWeatherResonses.hourly.snowfall;
         const arrSnowDepth = objWeatherResonses.hourly.snow_depth;
 
+        //Make into HTML
+        let hourlyPrecipitationDataHTML = '';
+        for (let i = 0; i < arrTime.length; i++) {
+            hourlyPrecipitationDataHTML += `
+                <p>Time: ${arrTime[i]}</p>
+                <p>Precipitation Probability: ${arrPrecipitationProbability[i]}</p>
+                <p>Precipitation: ${arrPrecipitation[i]}</p>
+                <p>Rain: ${arrRain[i]}</p>
+                <p>Showers: ${arrShowers[i]}</p>
+                <p>Snowfall: ${arrSnowfall[i]}</p>
+                <p>Snow Depth: ${arrSnowDepth[i]}</p>`;
+        }
+        document.querySelector('#hourlyPrecipitationData').innerHTML = hourlyPrecipitationDataHTML;
+
         //Wind
         const arrWindSpeed = objWeatherResonses.hourly.wind_speed_10m;
         const arrWindDirection = objWeatherResonses.hourly.wind_direction_10m;
