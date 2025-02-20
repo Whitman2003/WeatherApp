@@ -97,17 +97,20 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const arrSnowDepth = objWeatherResonses.hourly.snow_depth;
 
         //Make into HTML
-        let hourlyPrecipitationDataHTML = '';
+        let hourlyPrecipitationDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             hourlyPrecipitationDataHTML += `
-                <p>Time: ${arrTime[i]} ${strTime}
-                Precipitation Probability: ${arrPrecipitationProbability[i]} ${strPrecipitationProbability}
-                Precipitation: ${arrPrecipitation[i]} ${strPrecipitation}
-                Rain: ${arrRain[i]} ${strRain}
-                Showers: ${arrShowers[i]}  ${strShowers}
-                Snowfall: ${arrSnowfall[i]} ${strSnowfall}
-                Snow Depth: ${arrSnowDepth[i]} ${strSnowDepth}</p>`;
+                <tr>
+                    <td>${arrTime[i]} ${strTime}</td>
+                    <td>${arrPrecipitationProbability[i]} ${strPrecipitationProbability}</td>
+                    <td>${arrPrecipitation[i]} ${strPrecipitation}</td>
+                    <td>${arrRain[i]} ${strRain}</td>
+                    <td>${arrShowers[i]} ${strShowers}</td>
+                    <td>${arrSnowfall[i]} ${strSnowfall}</td>
+                    <td>${arrSnowDepth[i]} ${strSnowDepth}</td>
+                </tr>`;
         }
+        hourlyPrecipitationDataHTML += '</tbody></table>';
         document.querySelector('#hourlyPrecipitationData').innerHTML = hourlyPrecipitationDataHTML;
 
         //Wind
