@@ -1,6 +1,3 @@
-//Imports
-import { fetchWeatherApi } from 'https://cdn.jsdelivr.net/npm/openmeteo@latest/+esm';
-
 // click event for btnLocation
 document.querySelector('#btnLocation').addEventListener('click', async function(){
     // Retrieve the values from your login form
@@ -31,39 +28,15 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         return;
     }
 
-    const weatherParams = new URLSearchParams({
-        "latitude": strLat,
-        "longitude": strLong,
-        "hourly": [
-            "temperature_2m",
-            "relative_humidity_2m",
-            "apparent_temperature",
-            "precipitation_probability",
-            "precipitation",
-            "rain",
-            "showers",
-            "snowfall",
-            "snow_depth",
-            "cloud_cover",
-            "visibility",
-            "wind_speed_10m",
-            "wind_direction_10m",
-            "wind_gusts_10m",
-            "soil_temperature_0cm",
-            "soil_moisture_0_to_1cm"
-        ].join(",")
-    });
-
+    const weatherURL =`https://api.open-meteo.com/v1/forecast?latitude=${strLat}&longitude=${strLong}&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,cloud_cover,visibility,wind_speed_10m,wind_direction_10m,wind_gusts_10m,soil_temperature_0cm,soil_moisture_0_to_1cm`;
+      
     //Gets the data
     try {
-        const weatherURL = "https://api.open-meteo.com/v1/forecast";
-        const weatherURLParames = `${weatherURL}?${weatherParams.toString()}`;
         console.log("API URL: ", weatherURL);
+        const objWeatherResonse = await fetch(weatherURL);
+        const objWeatherResonses = await objWeatherResonse.json();
 
-        const objWeatherResonses = await fetchWeatherApi(weatherURLParames);
-        const objWeatherResonse = objWeatherResonses[0];
-
-        console.log("API Response: ", objWeatherResonse);
+        console.log("API Response: ", objWeatherResonses);
 
         if (!objWeatherResonse || objWeatherResonse.length === 0) {
             throw new Error("No data returned from the API");
