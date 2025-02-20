@@ -50,14 +50,19 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
                     "wind_direction_10m",
                     "wind_gusts_10m",
                     "soil_temperature_0cm",
-                    "soil_moisture_0_to_1cm"]
+                    "soil_moisture_0_to_1cm"],
+                "format": "json"
     };
 
     //Gets the data
     try {
         //const weatherURL = "https://api.open-meteo.com/v1/forecast";
         const objWeatherResonse = await fetchWeatherApi(objLocation);
-        console.log(objWeatherResonse);
+        console.log("API Response: ", objWeatherResonse);
+
+        if (!objWeatherResonse || objWeatherResonse.length === 0) {
+            throw new Error("No data returned from the API");
+        }
 
         //Get the first location
         const objFirstLocation = objWeatherResonse[0];
