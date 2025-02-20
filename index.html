@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Icon -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>SwollenRhinoWeather</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon-iphone-60x60.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/apple-touch-icon-ipad-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-iphone-retina-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-touch-icon-ipad-retina-152x152.png">
+    
+</head>
+
+
+<!-- Real Application-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cerulean/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Header -->
+     <header class="bg-primary text-white py-2">
+        <h2>Swollen Rhino Real Time Weather</h2>
+     </header>
+
+    <!-- Main Content -->
+    <form class="card col-12 col-lg-3 offset-lg-4">
+        <div class="card-header">
+            <h1 class="text-center">Enter Your Location!</h1>
+            <p class="text-center">Please provide the latitude and longitude.</p>
+        </div>
+        <div class="card-body">
+            <label for="txtLatitude" class="form-label mt-3">Latitude</label>
+            <input id="txtLatitude" class="form-control" type="text" placeholder="EX: 52.52" aria-label="Latitude" required>
+
+            <label for="txtLongitude" class="form-label mt-3">Longitude</label>
+            <input id="txtLongitude" class="form-control" type="text" placeholder="EX: 13.42" aria-label="Longitude" required>
+
+            <button class="btn btn-primary col-12 mt-4" type="button" id="btnLocation">Submit</button>
+        </div>
+    </form>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-0 mt-auto">
+        <h4>Data Provided By: <a href="https://open-meteo.com/" target="_blank" class="text-white">Open-Meteo</a></h4>
+        <h4>Licensed Under: <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" class="text-white">CC BY 4.0</a></h4>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
+
+<!-- ChatGPT was used to help with ideas for designing this webpage. -->
