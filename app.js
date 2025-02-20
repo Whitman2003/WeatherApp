@@ -70,6 +70,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         }
 
         //Attributes for timezone and location
+        console.log("Response: ", objWeatherResonse);
         const strUTCOffsetSeconds = objWeatherResonse.utcOffsetSeconds();
         const strTimezone = objWeatherResonse.timezone();
         const strTimezoneAbbr = objWeatherResonse.timezoneAbbreviation();
