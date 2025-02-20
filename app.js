@@ -28,6 +28,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
             html: strMessage,
             icon: "error"
         });
+        return;
     }
 
     //Contains the location data
@@ -54,43 +55,43 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
 
     //Gets the data
     try {
-        const weatherURL = "https://api.open-meteo.com/v1/forecast";
-        const objWeatherResonse = await fetchWeatherApi(/*weatherURL, */objLocation);
+        //const weatherURL = "https://api.open-meteo.com/v1/forecast";
+        const objWeatherResonse = await fetchWeatherApi(objLocation);
         console.log(objWeatherResonse);
 
         //Get the first location
         const objFirstLocation = objWeatherResonse[0];
 
         //Attributes for timezone and location
-        const strUTCOffsetSeconds = Response.utcOffsetSeconds();
-        const strTimezone = Response.timezone();
-        const strTimezoneAbbr = Response.timezoneAbbreviation();
-        const strLatitude = Response.latitude();
-        const strLongitude = Response.longitude();
+        const strUTCOffsetSeconds = objWeatherResonse.utc_offset_seconds;
+        const strTimezone = objWeatherResonse.timezone;
+        const strTimezoneAbbr = objWeatherResonse.timezone_abbreviation;
+        const strLatitude = objWeatherResonse.latitude;
+        const strLongitude = objWeatherResonse.longitude;
 
-        const hourly = Response.hourly();
+        const hourly = objWeatherResonse.hourly;
 
         const objWeatherData = {
             hourly: {
                 time: Range(Number(hourly.time()), Number(hourly.timeEnd()), hourly.interval()).map(
                     (t) => new Date((t + strUTCOffsetSeconds) * 1000)
                 ),
-                temperature2m: hourly.variables(0).valuesArray(),
-                relativeHumidity2m: hourly.variables(1).valuesArray(),
-                apparentTemperature: hourly.variables(2).valuesArray(),
-                precipitationProbability: hourly.variables(3).valuesArray(),
-                precipitation: hourly.variables(4).valuesArray(),
-                rain: hourly.variables(5).valuesArray(),
-                showers: hourly.variables(6).valuesArray(),
-                snowfall: hourly.variables(7).valuesArray(),
-                snowDepth: hourly.variables(8).valuesArray(),
-                cloudCover: hourly.variables(9).valuesArray(),
-                visibility: hourly.variables(10).valuesArray(),
-                windSpeed10m: hourly.variables(11).valuesArray(),
-                windDirection10m: hourly.variables(12).valuesArray(),
-                windGusts10m: hourly.variables(13).valuesArray(),
-                soilTemperature0cm: hourly.variables(14).valuesArray(),
-                soilMoisture0to1cm: hourly.variables(15).valuesArray()
+                temperature2m: hourly.variables[0].values,
+                relativeHumidity2m: hourly.variables[1].values,
+                apparentTemperature: hourly.variables[2].values,
+                precipitationProbability: hourly.variables[3].values,
+                precipitation: hourly.variables[4].values,
+                rain: hourly.variables[5].values,
+                showers: hourly.variables[6].values,
+                snowfall: hourly.variables[7].values,
+                snowDepth: hourly.variables[8].values,
+                cloudCover: hourly.variables[9].values,
+                visibility: hourly.variables[10].values,
+                windSpeed10m: hourly.variables[11].values,
+                windDirection10m: hourly.variables[12].values,
+                windGusts10m: hourly.variables[13].values,
+                soilTemperature0cm: hourly.variables[14].values,
+                soilMoisture0to1cm: hourly.variables[15].values
             },
         };
 
@@ -118,4 +119,4 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
     } catch (error) {
         console.error("Error getting weather information: ", error);
     }
-})
+});
