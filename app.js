@@ -57,6 +57,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
     //Gets the data
     try {
         const weatherURL = "https://api.open-meteo.com/v1/forecast";
+        console.log("API URL: ", weatherURL);
         const objWeatherResonses = await fetchWeatherApi(weatherURL, weatherParams);
         const objWeatherResonse = objWeatherResonses[0];
 
