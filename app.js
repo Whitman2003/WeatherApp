@@ -102,11 +102,11 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
             hourlyPrecipitationDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrPrecipitationProbability[i]} ${strPrecipitationProbability}</td>
-                    <td>${arrPrecipitation[i]} ${strPrecipitation}</td>
-                    <td>${arrRain[i]} ${strRain}</td>
-                    <td>${arrShowers[i]} ${strShowers}</td>
-                    <td>${arrSnowfall[i]} ${strSnowfall}</td>
+                    <td>${arrPrecipitationProbability[i]} ${strPrecipitationProbability}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrPrecipitation[i]} ${strPrecipitation}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrRain[i]} ${strRain}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrShowers[i]} ${strShowers}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrSnowfall[i]} ${strSnowfall}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrSnowDepth[i]} ${strSnowDepth}</td>
                 </tr>`;
         }
@@ -124,8 +124,8 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
             hourlyWindDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrWindSpeed[i]} ${strWindSpeed}</td>
-                    <td>${arrWindDirection[i]} ${strWindDirection}</td>
+                    <td>${arrWindSpeed[i]} ${strWindSpeed}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrWindDirection[i]} ${strWindDirection}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrWindGusts[i]} ${strWindGusts}</td>
                 </tr>`;
         }
@@ -143,8 +143,8 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
             hourlyTemperatureDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrTemperature[i]} ${strTemperature}</td>
-                    <td>${arrRelativeHumidity[i]} ${strRelativeHumidity}</td>
+                    <td>${arrTemperature[i]} ${strTemperature}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrRelativeHumidity[i]} ${strRelativeHumidity}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrApparentTemperature[i]} ${strApparentTemperature}</td>
                 </tr>`;
         }
@@ -161,7 +161,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
             hourlyVisibilityDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrCloudCover[i]} ${strCloudCover}</td>
+                    <td>${arrCloudCover[i]} ${strCloudCover}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrVisibility[i]} ${strVisibility}</td>
                 </tr>`;
         }
@@ -178,7 +178,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
             hourlySoilDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrSoilTemperature[i]} ${strSoilTemperature}</td>
+                    <td>${arrSoilTemperature[i]} ${strSoilTemperature}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrSoilMoisture[i]} ${strSoilMoisture}</td>
                 </tr>`;
         }
