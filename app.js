@@ -56,6 +56,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
     try {
         const weatherURL = "https://api.open-meteo.com/v1/forecast";
         const objWeatherResonse = await fetchWeatherApi(/*weatherURL, */objLocation);
+        console.log(objWeatherResonse);
 
         //Get the first location
         const objFirstLocation = objWeatherResonse[0];
