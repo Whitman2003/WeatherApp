@@ -1,5 +1,5 @@
 //Imports
-import { fetchWeatherApi } from 'https://cdn.jsdelivr.net/npm/openmeteo@3.0.0/+esm';
+import { fetchWeatherApi } from 'https://cdn.jsdelivr.net/npm/openmeteo@latest/+esm';
 
 // click event for btnLocation
 document.querySelector('#btnLocation').addEventListener('click', async function(){
