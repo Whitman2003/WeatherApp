@@ -121,7 +121,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrPrecipitationProbabilityMax[i]} ${strPrecipitationProbabilityMax}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrPrecipitationSum[i]} ${strPrecipitationSum}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrPrecipitationSum[i]}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrRainSum[i]} ${strRainSum}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrShowersSum[i]} ${strShowersSum}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrSnowfallSum[i]} ${strSnowfallSum}&nbsp&nbsp&nbsp&nbsp</td>
