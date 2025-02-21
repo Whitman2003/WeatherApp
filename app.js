@@ -125,92 +125,89 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
                     <td>${arrRainSum[i]} ${strRainSum}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrShowersSum[i]} ${strShowersSum}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrSnowfallSum[i]} ${strSnowfallSum}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrPrecipitationHours[i]} ${strPrecipitationHours}</td>
                 </tr>`;
         }
         dailyPrecipitationDataHTML += '</tbody></table>';
         document.querySelector('#dailyPrecipitationData').innerHTML = dailyPrecipitationDataHTML;
 
-        //Make the bargraph for precipitation
-        const precipitationCanvas = document.getElementById('precipitationChart');
-        const precipitationCtx = precipitationCanvas.getContext('2d');
+        // //Make the bargraph for precipitation
+        // const precipitationCanvas = document.getElementById('precipitationChart');
+        // const precipitationCtx = precipitationCanvas.getContext('2d');
 
-        const precipitationBarWidth = 30;
-        const precipitationGap = 10;
-        const precipitationHeight = precipitationCanvas.height - 40;
-        const precipitationChartWidth = precipitationCanvas.width - 40;
+        // const precipitationBarWidth = 30;
+        // const precipitationGap = 10;
+        // const precipitationHeight = precipitationCanvas.height - 40;
+        // const precipitationChartWidth = precipitationCanvas.width - 40;
 
-        const maxPrecipitation = Math.max(...arrPrecipitation);
-        const precipitationScale = precipitationHeight / maxPrecipitation;
+        // const maxPrecipitation = Math.max(...arrPrecipitation);
+        // const precipitationScale = precipitationHeight / maxPrecipitation;
 
-        precipitationCtx.clearRect(0, 0, precipitationCanvas.width, precipitationCanvas.height);
+        // precipitationCtx.clearRect(0, 0, precipitationCanvas.width, precipitationCanvas.height);
 
-        arrPrecipitation.forEach((precipitation, index) => {
-            const barHeight = precipitation * precipitationScale;
-            const x = index * (precipitationBarWidth + precipitationGap) +20;
-            const y = precipitationCanvas.height - barHeight + 20;
+        // arrPrecipitation.forEach((precipitation, index) => {
+        //     const barHeight = precipitation * precipitationScale;
+        //     const x = index * (precipitationBarWidth + precipitationGap) +20;
+        //     const y = precipitationCanvas.height - barHeight + 20;
 
-            precipitationCtx.fillStyle = 'blue';
-            precipitationCtx.fillRect(x, y, precipitationBarWidth, barHeight);
+        //     precipitationCtx.fillStyle = 'blue';
+        //     precipitationCtx.fillRect(x, y, precipitationBarWidth, barHeight);
 
-            precipitationCtx.fillStyle = 'black';
-            precipitationCtx.font = '12px Arial';
-            precipitationCtx.fillText(arrTime[index], x + 5, y + 15);
-        });
+        //     precipitationCtx.fillStyle = 'black';
+        //     precipitationCtx.font = '12px Arial';
+        //     precipitationCtx.fillText(arrTime[index], x + 5, y + 15);
+        // });
 
-        precipitationCtx.fillStyle = 'black';
-        precipitationCtx.font = '20px Arial';
-        precipitationCtx.fillText('Precipitation (mm)', 10, 20);
+        // precipitationCtx.fillStyle = 'black';
+        // precipitationCtx.font = '20px Arial';
+        // precipitationCtx.fillText('Precipitation (mm)', 10, 20);
 
         //Wind
-        const arrWindSpeed = objWeatherResponses.daily.wind_speed_10m;
-        const arrWindDirection = objWeatherResponses.daily.wind_direction_10m;
-        const arrWindGusts = objWeatherResponses.daily.wind_gusts_10m;
-
         //Make into HTML
-        let dailyWindDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Wind Speed</th><th>Wind Direction</th><th>Wind Gusts</th></tr></thread><tbody>';
+        let dailyWindDataHTML = '<table class="weather-table"><thead><tr><th>Time</th><th>Wind Speed</th><th>Wind Direction</th><th>Wind Gusts</th></tr></thead><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             dailyWindDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrWindSpeed[i]} ${strWindSpeed}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrWindDirection[i]} ${strWindDirection}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrWindGusts[i]} ${strWindGusts}</td>
+                    <td>${arrWindDirection10mDominant[i]} ${strWindDirection10mDominant}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrWindGusts10mMax[i]} ${strWindGusts10mMax}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrWindSpeed10mMax[i]} ${strWindSpeed10mMax}</td>
                 </tr>`;
         }
         dailyWindDataHTML += '</tbody></table>';
         document.querySelector('#dailyWindData').innerHTML = dailyWindDataHTML;
 
         //Temperature
-        const arrTemperature = objWeatherResponses.daily.temperature_2m;
-        const arrRelativeHumidity = objWeatherResponses.daily.relative_humidity_2m;
-        const arrApparentTemperature = objWeatherResponses.daily.apparent_temperature;
-
         //Make into HTML
-        let dailyTemperatureDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Temperature</th><th>Relative Humidity</th><th>Apparent Temperature</th></tr></thread><tbody>';
+        let dailyTemperatureDataHTML = '<table class="weather-table"><thead><tr><th>Time</th><th>Temperature</th><th>Relative Humidity</th><th>Apparent Temperature</th></tr></thead><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             dailyTemperatureDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrTemperature[i]} ${strTemperature}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrRelativeHumidity[i]} ${strRelativeHumidity}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrApparentTemperature[i]} ${strApparentTemperature}</td>
+                    <td>${arrApparentTemperatureMax[i]} ${strApparentTemperatureMax}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrApparentTemperatureMin[i]} ${strApparentTemperatureMin}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrTemperature2mMax[i]} ${strTemperature2mMax}</td>
+                    <td>${arrTemperature2mMin[i]} ${strTemperature2mMin}</td>
                 </tr>`;
         }
         dailyTemperatureDataHTML += '</tbody></table>';
         document.querySelector('#dailyTemperatureData').innerHTML = dailyTemperatureDataHTML;
         
-        //Visibility
-        const arrCloudCover = objWeatherResponses.daily.cloud_cover;
-        const arrVisibility = objWeatherResponses.daily.visibility;
-
+        //Sun Specs
         //Make into HTML
-        let dailyVisibilityDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Cloud Coverage</th><th>Visibility</th></tr></thread><tbody>';
+        let dailyVisibilityDataHTML = '<table class="weather-table"><thead><tr><th>Time</th><th>Cloud Coverage</th><th>Visibility</th></tr></thead><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             dailyVisibilityDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrCloudCover[i]} ${strCloudCover}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrVisibility[i]} ${strVisibility}</td>
+                    <td>${arrDaylightDuration[i]} ${strDaylightDuration}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrEvapotranspiration[i]} ${strEvapotranspiration}</td>
+                    <td>${arrShortwaveRadiationSum[i]} ${strShortwaveRadiationSum}</td>
+                    <td>${arrSunrise[i]} ${strSunrise}</td>
+                    <td>${arrSunset[i]} ${strSunset}</td>
+                    <td>${arrSunshineDuration[i]} ${strSunshineDuration}</td>
+                    <td>${arrUvIndexClearSkyMax[i]} ${strUvIndexClearSkyMax}</td>
+                    <td>${arrUvIndexMax[i]} ${strUvIndexMax}</td>
                 </tr>`;
         }
         dailyVisibilityDataHTML += '</tbody></table>';
