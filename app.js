@@ -83,7 +83,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const strSunshineDuration = objWeatherResponses.daily_units.sunshine_duration;
         const strTemperature2mMax = objWeatherResponses.daily_units.temperature_2m_max;
         const strTemperature2mMin = objWeatherResponses.daily_units.temperature_2m_min;
-        strTime = objWeatherResponses.daily_units.time;
+        const strTime = objWeatherResponses.daily_units.time;
         const strUvIndexClearSkyMax = objWeatherResponses.daily_units.uv_index_clear_sky_max;
         const strUvIndexMax = objWeatherResponses.daily_units.uv_index_max;
         const strWindDirection10mDominant = objWeatherResponses.daily_units.wind_direction_10m_dominant;
