@@ -87,6 +87,10 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         //Set the hourly data
         //Time for all
         const arrTime = objWeatherResonses.hourly.time;
+        //Today Only
+        const targetDate = new Date();
+        const formattedDate = targetDate.toISOString().split("T")[0];
+        const arrFilteredTime = arrTime.filter(time => time.startsWith(formattedDate));
 
         //Precipitation
         const arrPrecipitationProbability = objWeatherResonses.hourly.precipitation_probability;
@@ -96,18 +100,26 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const arrSnowfall = objWeatherResonses.hourly.snowfall;
         const arrSnowDepth = objWeatherResonses.hourly.snow_depth;
 
+        //Filtered
+        const arrFilteredPrecipitationProbability = arrPrecipitationProbability.filter((_, index) => arrFilteredTime[index].startsWith(formattedDate));
+        const arrFilteredPrecipitation = arrPrecipitation.filter((_, index) => arrFilteredTime[index].startsWith(formattedDate));
+        const arrFilteredRain = arrRain.filter((_, index) => arrFilteredTime[index].startsWith(formattedDate));
+        const arrFilteredShowers = arrShowers.filter((_, index) => arrFilteredTime[index].startsWith(formattedDate));
+        const arrFilteredSnowfall = arrSnowfall.filter((_, index) => arrFilteredTime[index].startsWith(formattedDate));
+        const arrFilteredSnowDepth = arrSnowDepth.filter((_, index) => arrFilteredTime[index].startsWith(formattedDate));
+
         //Make into HTML
         let hourlyPrecipitationDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             hourlyPrecipitationDataHTML += `
                 <tr>
-                    <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrPrecipitationProbability[i]} ${strPrecipitationProbability}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrPrecipitation[i]} ${strPrecipitation}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrRain[i]} ${strRain}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrShowers[i]} ${strShowers}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrSnowfall[i]} ${strSnowfall}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrSnowDepth[i]} ${strSnowDepth}</td>
+                    <td>${arrFilteredTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrFilteredPrecipitationProbability[i]} ${strPrecipitationProbability}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrFilteredPrecipitation[i]} ${strPrecipitation}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrFilteredRain[i]} ${strRain}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrFilteredShowers[i]} ${strShowers}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrFilteredSnowfall[i]} ${strSnowfall}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrFilteredSnowDepth[i]} ${strSnowDepth}</td>
                 </tr>`;
         }
         hourlyPrecipitationDataHTML += '</tbody></table>';
