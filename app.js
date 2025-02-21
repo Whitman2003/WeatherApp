@@ -212,24 +212,6 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         }
         dailyVisibilityDataHTML += '</tbody></table>';
         document.querySelector('#dailyVisibilityData').innerHTML = dailyVisibilityDataHTML;
-        
-        //Soil
-        const arrSoilTemperature = objWeatherResponses.daily.soil_temperature_0cm;
-        const arrSoilMoisture = objWeatherResponses.daily.soil_moisture_0_to_1cm;
-
-        //Make into HTML
-        let dailySoilDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Soil Temperature</th><th>Soil Moisture</th></tr></thread><tbody>';
-        for (let i = 0; i < arrTime.length; i++) {
-            dailySoilDataHTML += `
-                <tr>
-                    <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrSoilTemperature[i]} ${strSoilTemperature}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrSoilMoisture[i]} ${strSoilMoisture}</td>
-                </tr>`;
-        }
-        dailySoilDataHTML += '</tbody></table>';
-        document.querySelector('#dailySoilData').innerHTML = dailySoilDataHTML;
-        
     } catch (error) {
         console.error("Error getting weather information: ", error);
     }
