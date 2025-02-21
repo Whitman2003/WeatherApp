@@ -46,13 +46,14 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         console.log("Response: ", objWeatherResponse);
         
         //Set the data
+        const strEleveation = objWeatherResponses.elevation;
+        const strGenerationTime = objWeatherResponses.generationtime_ms;
         const strLatitude = objWeatherResponses.latitude;
         const strLongitude = objWeatherResponses.longitude;
-        const strGenerationTime = objWeatherResponses.generationtime_ms;
-        const strUTCOffsetSeconds = objWeatherResponses.utc_offset_seconds;
         const strTimezone = objWeatherResponses.timezone;
+        const strUTCOffsetSeconds = objWeatherResponses.utc_offset_seconds;
         const strTimezoneAbbr = objWeatherResponses.timezone_abbreviation;
-        const strEleveation = objWeatherResponses.elevation;
+        
 
         //Make into HTML
         const confirmWeatherDataHTML = `
@@ -66,53 +67,68 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
 
         document.querySelector('#confirmWeatherData').innerHTML = confirmWeatherDataHTML;
 
-        //Set the hourly units
-        const strTime = objWeatherResponses.hourly_units.time;
-        const strTemperature = objWeatherResponses.hourly_units.temperature_2m;
-        const strRelativeHumidity = objWeatherResponses.hourly_units.relative_humidity_2m;
-        const strApparentTemperature = objWeatherResponses.hourly_units.apparent_temperature;
-        const strPrecipitationProbability = objWeatherResponses.hourly_units.precipitation_probability;
-        const strPrecipitation = objWeatherResponses.hourly_units.precipitation;
-        const strRain = objWeatherResponses.hourly_units.rain;
-        const strShowers = objWeatherResponses.hourly_units.showers;
-        const strSnowfall = objWeatherResponses.hourly_units.snowfall;
-        const strSnowDepth = objWeatherResponses.hourly_units.snow_depth;
-        const strCloudCover = objWeatherResponses.hourly_units.cloud_cover;
-        const strVisibility = objWeatherResponses.hourly_units.visibility;
-        const strWindSpeed = objWeatherResponses.hourly_units.wind_speed_10m;
-        const strWindDirection = objWeatherResponses.hourly_units.wind_direction_10m;
-        const strWindGusts = objWeatherResponses.hourly_units.wind_gusts_10m;
-        const strSoilTemperature = objWeatherResponses.hourly_units.soil_temperature_0cm;
-        const strSoilMoisture = objWeatherResponses.hourly_units.soil_moisture_0_to_1cm;
+        //Set the daily units
+        const strApparentTemperatureMax = objWeatherResponses.daily_units.apparent_temperature_max;
+        const strApparentTemperatureMin = objWeatherResponses.daily_units.apparent_temperature_min;
+        const strDaylightDuration = objWeatherResponses.daily_units.daylight_duration;
+        const strEvapotranspiration = objWeatherResponses.daily_units.et0_fao_evapotranspiration;
+        const strPrecipitationHours = objWeatherResponses.daily_units.precipitation_hours;
+        const strPrecipitationProbabilityMax = objWeatherResponses.daily_units.precipitation_probability_max;
+        const strRainSum = objWeatherResponses.daily_units.rain_sum;
+        const strShortwaveRadiationSum = objWeatherResponses.daily_units.shortwave_radiation_sum;
+        const strShowersSum = objWeatherResponses.daily_units.showers_sum;
+        const strSnowfallSum = objWeatherResponses.daily_units.snowfall_sum;
+        const strSunrise = objWeatherResponses.daily_units.sunrise;
+        const strSunset = objWeatherResponses.daily_units.sunset;
+        const strSunshineDuration = objWeatherResponses.daily_units.sunshine_duration;
+        const strTemperature2mMax = objWeatherResponses.daily_units.temperature_2m_max;
+        const strTemperature2mMin = objWeatherResponses.daily_units.temperature_2m_min;
+        strTime = objWeatherResponses.daily_units.time;
+        const strUvIndexClearSkyMax = objWeatherResponses.daily_units.uv_index_clear_sky_max;
+        const strUvIndexMax = objWeatherResponses.daily_units.uv_index_max;
+        const strWindDirection10mDominant = objWeatherResponses.daily_units.wind_direction_10m_dominant;
+        const strWindGusts10mMax = objWeatherResponses.daily_units.wind_gusts_10m_max;
+        const strWindSpeed10mMax = objWeatherResponses.daily_units.wind_speed_10m_max;
 
-        //Set the hourly data
-        //Time for all
-        const arrTime = objWeatherResponses.hourly.time;
-
-        //Precipitation
-        const arrPrecipitationProbability = objWeatherResponses.hourly.precipitation_probability;
-        const arrPrecipitation = objWeatherResponses.hourly.precipitation;
-        const arrRain = objWeatherResponses.hourly.rain;
-        const arrShowers = objWeatherResponses.hourly.showers;
-        const arrSnowfall = objWeatherResponses.hourly.snowfall;
-        const arrSnowDepth = objWeatherResponses.hourly.snow_depth;
+        //Set the daily data
+        const arrApparentTemperatureMax = objWeatherResponses.daily.apparent_temperature_max;
+        const arrApparentTemperatureMin = objWeatherResponses.daily.apparent_temperature_min;
+        const arrDaylightDuration = objWeatherResponses.daily.daylight_duration;
+        const arrEvapotranspiration = objWeatherResponses.daily.et0_fao_evapotranspiration;
+        const arrPrecipitationHours = objWeatherResponses.daily.precipitation_hours;
+        const arrPrecipitationProbabilityMax = objWeatherResponses.daily.precipitation_probability_max;
+        const arrPrecipitationSum = objWeatherResponses.daily.precipitation_sum;
+        const arrRainSum = objWeatherResponses.daily.rain_sum;
+        const arrShortwaveRadiationSum = objWeatherResponses.daily.shortwave_radiation_sum;
+        const arrShowersSum = objWeatherResponses.daily.showers_sum;
+        const arrSnowfallSum = objWeatherResponses.daily.snowfall_sum;
+        const arrSunrise = objWeatherResponses.daily.sunrise;
+        const arrSunset = objWeatherResponses.daily.sunset;
+        const arrSunshineDuration = objWeatherResponses.daily.sunshine_duration;
+        const arrTemperature2mMax = objWeatherResponses.daily.temperature_2m_max;
+        const arrTemperature2mMin = objWeatherResponses.daily.temperature_2m_min;
+        const arrTime = objWeatherResponses.daily.time;
+        const arrUvIndexClearSkyMax = objWeatherResponses.daily.uv_index_clear_sky_max;
+        const arrUvIndexMax = objWeatherResponses.daily.uv_index_max;
+        const arrWindDirection10mDominant = objWeatherResponses.daily.wind_direction_10m_dominant;
+        const arrWindGusts10mMax = objWeatherResponses.daily.wind_gusts_10m_max;
+        const arrWindSpeed10mMax = objWeatherResponses.daily.wind_speed_10m_max;
 
         //Make into HTML
-        let hourlyPrecipitationDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
+        let dailyPrecipitationDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
-            hourlyPrecipitationDataHTML += `
+            dailyPrecipitationDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrPrecipitationProbability[i]} ${strPrecipitationProbability}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrPrecipitation[i]} ${strPrecipitation}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrRain[i]} ${strRain}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrShowers[i]} ${strShowers}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrSnowfall[i]} ${strSnowfall}&nbsp&nbsp&nbsp&nbsp</td>
-                    <td>${arrSnowDepth[i]} ${strSnowDepth}</td>
+                    <td>${arrPrecipitationProbabilityMax[i]} ${strPrecipitationProbabilityMax}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrPrecipitationSum[i]} ${strPrecipitationSum}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrRainSum[i]} ${strRainSum}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrShowersSum[i]} ${strShowersSum}&nbsp&nbsp&nbsp&nbsp</td>
+                    <td>${arrSnowfallSum[i]} ${strSnowfallSum}&nbsp&nbsp&nbsp&nbsp</td>
                 </tr>`;
         }
-        hourlyPrecipitationDataHTML += '</tbody></table>';
-        document.querySelector('#hourlyPrecipitationData').innerHTML = hourlyPrecipitationDataHTML;
+        dailyPrecipitationDataHTML += '</tbody></table>';
+        document.querySelector('#dailyPrecipitationData').innerHTML = dailyPrecipitationDataHTML;
 
         //Make the bargraph for precipitation
         const precipitationCanvas = document.getElementById('precipitationChart');
@@ -146,14 +162,14 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         precipitationCtx.fillText('Precipitation (mm)', 10, 20);
 
         //Wind
-        const arrWindSpeed = objWeatherResponses.hourly.wind_speed_10m;
-        const arrWindDirection = objWeatherResponses.hourly.wind_direction_10m;
-        const arrWindGusts = objWeatherResponses.hourly.wind_gusts_10m;
+        const arrWindSpeed = objWeatherResponses.daily.wind_speed_10m;
+        const arrWindDirection = objWeatherResponses.daily.wind_direction_10m;
+        const arrWindGusts = objWeatherResponses.daily.wind_gusts_10m;
 
         //Make into HTML
-        let hourlyWindDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Wind Speed</th><th>Wind Direction</th><th>Wind Gusts</th></tr></thread><tbody>';
+        let dailyWindDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Wind Speed</th><th>Wind Direction</th><th>Wind Gusts</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
-            hourlyWindDataHTML += `
+            dailyWindDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrWindSpeed[i]} ${strWindSpeed}&nbsp&nbsp&nbsp&nbsp</td>
@@ -161,18 +177,18 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
                     <td>${arrWindGusts[i]} ${strWindGusts}</td>
                 </tr>`;
         }
-        hourlyWindDataHTML += '</tbody></table>';
-        document.querySelector('#hourlyWindData').innerHTML = hourlyWindDataHTML;
+        dailyWindDataHTML += '</tbody></table>';
+        document.querySelector('#dailyWindData').innerHTML = dailyWindDataHTML;
 
         //Temperature
-        const arrTemperature = objWeatherResponses.hourly.temperature_2m;
-        const arrRelativeHumidity = objWeatherResponses.hourly.relative_humidity_2m;
-        const arrApparentTemperature = objWeatherResponses.hourly.apparent_temperature;
+        const arrTemperature = objWeatherResponses.daily.temperature_2m;
+        const arrRelativeHumidity = objWeatherResponses.daily.relative_humidity_2m;
+        const arrApparentTemperature = objWeatherResponses.daily.apparent_temperature;
 
         //Make into HTML
-        let hourlyTemperatureDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Temperature</th><th>Relative Humidity</th><th>Apparent Temperature</th></tr></thread><tbody>';
+        let dailyTemperatureDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Temperature</th><th>Relative Humidity</th><th>Apparent Temperature</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
-            hourlyTemperatureDataHTML += `
+            dailyTemperatureDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrTemperature[i]} ${strTemperature}&nbsp&nbsp&nbsp&nbsp</td>
@@ -180,42 +196,42 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
                     <td>${arrApparentTemperature[i]} ${strApparentTemperature}</td>
                 </tr>`;
         }
-        hourlyTemperatureDataHTML += '</tbody></table>';
-        document.querySelector('#hourlyTemperatureData').innerHTML = hourlyTemperatureDataHTML;
+        dailyTemperatureDataHTML += '</tbody></table>';
+        document.querySelector('#dailyTemperatureData').innerHTML = dailyTemperatureDataHTML;
         
         //Visibility
-        const arrCloudCover = objWeatherResponses.hourly.cloud_cover;
-        const arrVisibility = objWeatherResponses.hourly.visibility;
+        const arrCloudCover = objWeatherResponses.daily.cloud_cover;
+        const arrVisibility = objWeatherResponses.daily.visibility;
 
         //Make into HTML
-        let hourlyVisibilityDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Cloud Coverage</th><th>Visibility</th></tr></thread><tbody>';
+        let dailyVisibilityDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Cloud Coverage</th><th>Visibility</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
-            hourlyVisibilityDataHTML += `
+            dailyVisibilityDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrCloudCover[i]} ${strCloudCover}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrVisibility[i]} ${strVisibility}</td>
                 </tr>`;
         }
-        hourlyVisibilityDataHTML += '</tbody></table>';
-        document.querySelector('#hourlyVisibilityData').innerHTML = hourlyVisibilityDataHTML;
+        dailyVisibilityDataHTML += '</tbody></table>';
+        document.querySelector('#dailyVisibilityData').innerHTML = dailyVisibilityDataHTML;
         
         //Soil
-        const arrSoilTemperature = objWeatherResponses.hourly.soil_temperature_0cm;
-        const arrSoilMoisture = objWeatherResponses.hourly.soil_moisture_0_to_1cm;
+        const arrSoilTemperature = objWeatherResponses.daily.soil_temperature_0cm;
+        const arrSoilMoisture = objWeatherResponses.daily.soil_moisture_0_to_1cm;
 
         //Make into HTML
-        let hourlySoilDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Soil Temperature</th><th>Soil Moisture</th></tr></thread><tbody>';
+        let dailySoilDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Soil Temperature</th><th>Soil Moisture</th></tr></thread><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
-            hourlySoilDataHTML += `
+            dailySoilDataHTML += `
                 <tr>
                     <td>${arrTime[i]} ${strTime}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrSoilTemperature[i]} ${strSoilTemperature}&nbsp&nbsp&nbsp&nbsp</td>
                     <td>${arrSoilMoisture[i]} ${strSoilMoisture}</td>
                 </tr>`;
         }
-        hourlySoilDataHTML += '</tbody></table>';
-        document.querySelector('#hourlySoilData').innerHTML = hourlySoilDataHTML;
+        dailySoilDataHTML += '</tbody></table>';
+        document.querySelector('#dailySoilData').innerHTML = dailySoilDataHTML;
         
     } catch (error) {
         console.error("Error getting weather information: ", error);
