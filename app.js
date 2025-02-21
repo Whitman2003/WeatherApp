@@ -115,7 +115,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
 
         //Make the bargraph for precipitation
         const precipitationCanvas = document.getElementById('precipitationChart');
-        const precipitationCtx = canvas.getContext('2d');
+        const precipitationCtx = precipitationCanvas.getContext('2d');
 
         const precipitationBarWidth = 30;
         const precipitationGap = 10;
