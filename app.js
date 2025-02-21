@@ -115,7 +115,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const arrWindSpeed10mMax = objWeatherResponses.daily.wind_speed_10m_max;
 
         //Make into HTML
-        let dailyPrecipitationDataHTML = '<table class="weather-table"><thread><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thread><tbody>';
+        let dailyPrecipitationDataHTML = '<table class="weather-table"><thead><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thead><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             dailyPrecipitationDataHTML += `
                 <tr>
