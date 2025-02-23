@@ -133,7 +133,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
 
         //Wind
         //Make into HTML
-        let dailyWindDataHTML = '<table class="weather-table"><thead><tr><th>Time</th><th>Wind Speed</th><th>Wind Direction</th><th>Wind Gusts</th></tr></thead><tbody>';
+        let dailyWindDataHTML = '<table class="table table-bordered text-center"><thead><tr><th>Time</th><th>Wind Speed</th><th>Wind Direction</th><th>Wind Gusts</th></tr></thead><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             dailyWindDataHTML += `
                 <tr>
@@ -148,7 +148,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
 
         //Temperature
         //Make into HTML
-        let dailyTemperatureDataHTML = '<table class="weather-table"><thead><tr><th>Time</th><th>Temperature</th><th>Relative Humidity</th><th>Apparent Temperature</th></tr></thead><tbody>';
+        let dailyTemperatureDataHTML = '<table class="table table-bordered text-center"><thead><tr><th>Time</th><th>Temperature</th><th>Relative Humidity</th><th>Apparent Temperature</th></tr></thead><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             dailyTemperatureDataHTML += `
                 <tr>
@@ -164,7 +164,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         
         //Sun Specs
         //Make into HTML
-        let dailyVisibilityDataHTML = '<table class="weather-table"><thead><tr><th>Time</th><th>Cloud Coverage</th><th>Visibility</th></tr></thead><tbody>';
+        let dailyVisibilityDataHTML = '<table class="table table-bordered text-center"><thead><tr><th>Time</th><th>Cloud Coverage</th><th>Visibility</th></tr></thead><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             dailyVisibilityDataHTML += `
                 <tr>
