@@ -115,7 +115,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         const arrWindSpeed10mMax = objWeatherResponses.daily.wind_speed_10m_max;
 
         //Make into HTML
-        let dailyPrecipitationDataHTML = '<table class="weather-table"><thead><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thead><tbody>';
+        let dailyPrecipitationDataHTML = '<table class="table table-bordered text-center"><thead><tr><th>Time</th><th>Precipitation Probability</th><th>Precipitation</th><th>Rain</th><th>Showers</th><th>Snowfall</th><th>Snow Depth</th></tr></thead><tbody>';
         for (let i = 0; i < arrTime.length; i++) {
             dailyPrecipitationDataHTML += `
                 <tr>
@@ -130,37 +130,6 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
         }
         dailyPrecipitationDataHTML += '</tbody></table>';
         document.querySelector('#dailyPrecipitationData').innerHTML = dailyPrecipitationDataHTML;
-
-        // //Make the bargraph for precipitation
-        // const precipitationCanvas = document.getElementById('precipitationChart');
-        // const precipitationCtx = precipitationCanvas.getContext('2d');
-
-        // const precipitationBarWidth = 30;
-        // const precipitationGap = 10;
-        // const precipitationHeight = precipitationCanvas.height - 40;
-        // const precipitationChartWidth = precipitationCanvas.width - 40;
-
-        // const maxPrecipitation = Math.max(...arrPrecipitation);
-        // const precipitationScale = precipitationHeight / maxPrecipitation;
-
-        // precipitationCtx.clearRect(0, 0, precipitationCanvas.width, precipitationCanvas.height);
-
-        // arrPrecipitation.forEach((precipitation, index) => {
-        //     const barHeight = precipitation * precipitationScale;
-        //     const x = index * (precipitationBarWidth + precipitationGap) +20;
-        //     const y = precipitationCanvas.height - barHeight + 20;
-
-        //     precipitationCtx.fillStyle = 'blue';
-        //     precipitationCtx.fillRect(x, y, precipitationBarWidth, barHeight);
-
-        //     precipitationCtx.fillStyle = 'black';
-        //     precipitationCtx.font = '12px Arial';
-        //     precipitationCtx.fillText(arrTime[index], x + 5, y + 15);
-        // });
-
-        // precipitationCtx.fillStyle = 'black';
-        // precipitationCtx.font = '20px Arial';
-        // precipitationCtx.fillText('Precipitation (mm)', 10, 20);
 
         //Wind
         //Make into HTML
