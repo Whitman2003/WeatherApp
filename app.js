@@ -211,7 +211,7 @@ document.querySelector('#btnLocation').addEventListener('click', async function(
                 </tr>`;
         }
         dailyVisibilityDataHTML += '</tbody></table>';
-        document.querySelector('#dailyVisibilityData').innerHTML = dailyVisibilityDataHTML;
+        document.querySelector('#dailySunData').innerHTML = dailyVisibilityDataHTML;
     } catch (error) {
         console.error("Error getting weather information: ", error);
     }
